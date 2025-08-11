@@ -2,6 +2,7 @@ package com.example.vaadincluster.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.session.web.http.DefaultCookieSerializer;
 import org.springframework.session.web.http.CookieHttpSessionIdResolver;
 import org.springframework.session.web.http.HttpSessionIdResolver;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -26,8 +27,11 @@ public class SessionConfig {
     @Bean
     public HttpSessionIdResolver httpSessionIdResolver() {
         CookieHttpSessionIdResolver resolver = new CookieHttpSessionIdResolver();
-        resolver.setCookieName("VAADINCLUSTER_SESSIONID");
-        resolver.setCookieMaxAge(-1); // Session cookie
+        DefaultCookieSerializer cookieSerializer = new DefaultCookieSerializer();
+        cookieSerializer.setCookieName("VAADINCLUSTER_SESSIONID");
+        cookieSerializer.setCookieMaxAge(1800); // 30 minutes
+        cookieSerializer.setCookiePath("/");
+        resolver.setCookieSerializer(cookieSerializer);
         return resolver;
     }
     

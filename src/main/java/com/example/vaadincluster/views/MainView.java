@@ -141,7 +141,7 @@ public class MainView extends VerticalLayout {
     }
     
     private void initializeSession() {
-        HttpSession session = VaadinSession.getCurrent().getSession();
+        jakarta.servlet.http.HttpSession session = (jakarta.servlet.http.HttpSession) VaadinSession.getCurrent().getSession();
         
         if (session.getAttribute(SESSION_COUNTER_KEY) == null) {
             session.setAttribute(SESSION_COUNTER_KEY, 0);
@@ -150,7 +150,7 @@ public class MainView extends VerticalLayout {
     }
     
     private void incrementCounter() {
-        HttpSession session = VaadinSession.getCurrent().getSession();
+        jakarta.servlet.http.HttpSession session = (jakarta.servlet.http.HttpSession) VaadinSession.getCurrent().getSession();
         Integer counter = (Integer) session.getAttribute(SESSION_COUNTER_KEY);
         counter = (counter == null) ? 1 : counter + 1;
         session.setAttribute(SESSION_COUNTER_KEY, counter);
@@ -162,7 +162,7 @@ public class MainView extends VerticalLayout {
     }
     
     private void resetSession() {
-        HttpSession session = VaadinSession.getCurrent().getSession();
+        jakarta.servlet.http.HttpSession session = (jakarta.servlet.http.HttpSession) VaadinSession.getCurrent().getSession();
         session.invalidate();
         
         // Refresh the page
@@ -175,7 +175,7 @@ public class MainView extends VerticalLayout {
     private void saveName() {
         String name = userNameField.getValue();
         if (name != null && !name.trim().isEmpty()) {
-            HttpSession session = VaadinSession.getCurrent().getSession();
+            jakarta.servlet.http.HttpSession session = (jakarta.servlet.http.HttpSession) VaadinSession.getCurrent().getSession();
             session.setAttribute(SESSION_USERNAME_KEY, name.trim());
             updateDisplays();
             
@@ -194,7 +194,7 @@ public class MainView extends VerticalLayout {
     }
     
     private void updateSessionInfo() {
-        HttpSession session = VaadinSession.getCurrent().getSession();
+        jakarta.servlet.http.HttpSession session = (jakarta.servlet.http.HttpSession) VaadinSession.getCurrent().getSession();
         
         String sessionId = session.getId();
         Integer counter = (Integer) session.getAttribute(SESSION_COUNTER_KEY);
@@ -242,7 +242,7 @@ public class MainView extends VerticalLayout {
     }
     
     private void updateCounter() {
-        HttpSession session = VaadinSession.getCurrent().getSession();
+        jakarta.servlet.http.HttpSession session = (jakarta.servlet.http.HttpSession) VaadinSession.getCurrent().getSession();
         Integer counter = (Integer) session.getAttribute(SESSION_COUNTER_KEY);
         
         counterDiv.removeAll();

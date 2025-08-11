@@ -6,7 +6,7 @@ import com.hazelcast.core.HazelcastInstance;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.session.hazelcast.HazelcastIndexedSessionRepository;
-import org.springframework.session.hazelcast.PrincipalNameExtractor;
+
 
 /**
  * Hazelcast configuration for distributed session management.
@@ -86,13 +86,7 @@ public class HazelcastConfig {
         return Hazelcast.newHazelcastInstance(config);
     }
     
-    /**
-     * Principal name extractor for session attribution
-     */
-    @Bean
-    public PrincipalNameExtractor principalNameExtractor() {
-        return PrincipalNameExtractor.class::getName;
-    }
+
     
     /**
      * Portable factory for session serialization
